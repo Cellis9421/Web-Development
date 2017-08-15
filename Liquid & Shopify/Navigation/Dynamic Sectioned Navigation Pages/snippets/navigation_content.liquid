@@ -1,0 +1,68 @@
+{% capture width_classes%}
+	{% case section.settings.nav_items_width %}
+      {% when '2' %} 
+		col-xs-6
+      {% when '3'%} 
+		col-xs-4
+      {% when '4' %}
+        col-sm-3 col-xs-6
+      {% else %}
+        col-xs-12
+      {% endcase %}
+{% endcapture %}
+
+<div class="navigation-page-header row text-center">
+  	{% if section.settings.header_img or section.settings.header_img_url %}
+	<div class="col-xs-12">
+		<img class="collection-header-image" src="{% if section.settings.header_img %}
+                                                  	{{section.settings.header_img.src}}
+                                                  {% else %}
+                                                  	{{ section.settings.header_img_url }}
+                                                  {% endif %}" alt="" />
+	</div>
+  	{% endif %}
+  
+	<div class="col-xs-12">
+		<div class="collection-title-wrapper">
+			<h1 class="title">{{page.title}}</h1>
+		</div>
+      	{% if section.settings.header_seo != blank %}
+			<p class="text-description">{{section.settings.header_seo}}</p>
+      	{% endif %}
+		<hr/>
+	</div>
+</div>
+
+{% for block in section.blocks %}
+	{% if forloop.first == true %}
+		<div class="row text-center">
+    {% endif %}
+          
+          <div class="{{width_classes}} item-wrapper">
+	<a href="{{block.settings.link}}" class="item-wrapper" {% if block.settings.link_new_tab %}target="_blank"{% endif %}>
+      {% if block.settings.show_img %}
+		<div class="image-wrapper">
+			<img class="nav-image" src="{% if block.settings.img %}
+                                        	{{block.settings.img.src | img_url }}
+                                        {% else %}
+                                        	{{ block.settings.img_url }}
+                                        {% endif %}" alt="">
+		</div>
+      {% endif %}
+		<div class="subtitle-wrapper">
+			<h4 class="subtitle">
+{{block.settings.title}}</h4>
+		</div>
+	</a>
+</div>
+    {% if forloop.first == false %}
+          {% assign untilRowBreak = forloop.index | modulo: section.settings.nav_items_width %}
+          {% if forloop.last == false and untilRowBreak == 0 %}
+          </div>
+          <div class="row text-center">
+          {% endif%}
+    {% endif%}
+    {% if forloop.last == true %}
+		</div>
+    {% endif %}
+{% endfor %}

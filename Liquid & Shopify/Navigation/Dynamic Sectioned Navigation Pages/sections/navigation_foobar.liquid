@@ -1,0 +1,110 @@
+{% schema %}
+  {
+    "name": "Navigation Items",
+    "settings": [
+{
+   "type":      "select",
+   "id":        "nav_items_width",
+   "label":     "Width",
+   "options": [
+     {
+       "group": "value",
+       "value": "1",
+       "label": "1"
+     },
+	 {
+       "group": "value",
+       "value": "2",
+       "label": "2"
+     },
+     {
+       "group": "value",
+       "value": "3",
+       "label": "3"
+     },
+     {
+       "group": "value",
+       "value": "4",
+       "label": "4"
+     }
+   ],
+   "default":   "4",
+   "info":      "The number of Navigations items to show per row."
+},
+{
+        "id": "header_seo",
+        "type": "text",
+        "label": "Header SEO",
+        "placeholder": "SEO header here..."
+
+      },{
+            "id": "header_img",
+            "type": "image_picker",
+            "label": "Header Image"
+          },
+			{
+            "id": "header_img_url",
+            "type": "text",
+            "label": "or Header Image URL",
+			"info":      "The URL to an already hosted image.",
+   			"placeholder": ""
+          }
+	],
+	"blocks": [
+      {
+        "type": "navItem",
+        "name": "Navigation Item",
+        "settings": [
+		  {
+            "id": "title",
+            "type": "text",
+            "label": "Title",
+			"info":      "The text to be displayed below the image.",
+   			"placeholder": "Title here"
+          },
+          {
+            "id": "link",
+            "type": "text",
+            "label": "Link",
+			"info":      "The destination URL.",
+   			"placeholder": "/pages/contact"
+          },
+          {
+             "type":      "checkbox",
+             "id":        "link_new_tab",
+             "label":     "Open in new tab?",
+             "default":   false,
+             "info":      "Should this link open in a new browser tab?"
+          },{
+            "id": "img",
+            "type": "image_picker",
+            "label": "Image"
+          },
+			{
+            "id": "img_url",
+            "type": "text",
+            "label": "or Image URL",
+			"info":      "The URL to an already hosted image.",
+   			"placeholder": "www.example.com/image.jpg"
+          },
+          {
+             "type":      "checkbox",
+             "id":        "show_img",
+             "label":     "Use Image?",
+             "default":   true,
+             "info":      "Should this navigation item show an image?"
+          }
+			
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% include 'navigation_content'%}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
