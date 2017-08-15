@@ -1,0 +1,13 @@
+{% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}">
+          	<li class="single-menu-item{% if link.title contains 'Returns'%} double-menu-item{% endif %}">
+                  {% if link.title contains 'Cart' %}
+			<i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+		  {% endif %}
+                  {% if link.title contains 'My Account' and customer %}
+			{{ link.title }}
+		  {% else %}
+			Login/Sign Up
+		  {% endif %}</li>
+          </a>
+{% endfor %}
